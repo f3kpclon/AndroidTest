@@ -67,6 +67,8 @@ public class TweetsListFragment extends Fragment {
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_tweets_list_list, container, false);
 
+
+
         progressBar = view.findViewById(R.id.loading);
         recyclerView = view.findViewById(R.id.list);
         // Set the adapter
