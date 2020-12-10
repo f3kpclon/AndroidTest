@@ -2,6 +2,7 @@ package com.testsandroid.mitwittertest.ui.activity;
 
 import android.os.Bundle;
 import android.view.View;
+import android.widget.ImageView;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.navigation.NavController;
@@ -9,12 +10,16 @@ import androidx.navigation.Navigation;
 import androidx.navigation.ui.AppBarConfiguration;
 import androidx.navigation.ui.NavigationUI;
 
+import com.bumptech.glide.Glide;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.testsandroid.mitwittertest.R;
+import com.testsandroid.mitwittertest.commons.Constants;
+import com.testsandroid.mitwittertest.commons.SharedPreferencesManager;
 import com.testsandroid.mitwittertest.ui.fragment.TweetDialog.TweetDialogFragment;
 
 public class DashboardActivity extends AppCompatActivity {
+    ImageView ivAvatar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -22,6 +27,7 @@ public class DashboardActivity extends AppCompatActivity {
         setContentView(R.layout.activity_dashboard);
         BottomNavigationView navView = findViewById(R.id.nav_view);
         FloatingActionButton floatingActionButton = findViewById(R.id.fab);
+        ivAvatar = findViewById(R.id.imageViewUser);
 
         // Passing each menu ID as a set of Ids because each
         // menu should be considered as top level destinations.
@@ -41,6 +47,13 @@ public class DashboardActivity extends AppCompatActivity {
                 tweetDialogFragment.show(getSupportFragmentManager(),"TweetDialogFragment");
             }
         });
+
+        String photoUSer = SharedPreferencesManager.getSomeStringValue(Constants.PREF_PHOTOURL);
+        if(!photoUSer.isEmpty()){
+            Glide.with(this)
+                    .load(Constants.BASE_URL_FILE + photoUSer)
+                    .into(ivAvatar);
+        }
 
 
 

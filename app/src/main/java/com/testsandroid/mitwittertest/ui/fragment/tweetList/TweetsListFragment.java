@@ -9,7 +9,6 @@ import android.widget.ProgressBar;
 
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
-import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -86,18 +85,12 @@ public class TweetsListFragment extends Fragment {
     private void loadDataAdapter() {
         progressBar.setVisibility(View.VISIBLE);
         recyclerView.setVisibility(View.GONE);
-        tweetViewModel.getListLiveData().observe(getActivity(), new Observer<List<Tweet>>() {
+        tweetViewModel.getListLiveData().observe(getActivity(), tweets -> {
 
-            @Override
-            public void onChanged(@Nullable List<Tweet> tweets) {
-
-                progressBar.setVisibility(View.GONE);
-                recyclerView.setVisibility(View.VISIBLE);
-                tweetList = tweets;
-                adapter.setData(tweetList);
-
-
-            }
+            progressBar.setVisibility(View.GONE);
+            recyclerView.setVisibility(View.VISIBLE);
+            tweetList = tweets;
+            adapter.setData(tweetList);
 
 
         });

@@ -1,9 +1,10 @@
 
 package com.testsandroid.mitwittertest.model.response;
 
-import java.util.List;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
+
+import java.util.List;
 
 public class Tweet {
 
@@ -26,6 +27,12 @@ public class Tweet {
      */
     public Tweet() {
     }
+    public Tweet(Tweet tweet) {
+        this.id = tweet.getId();
+        this.mensaje = tweet.getMensaje();
+        this.likes = tweet.getLikes();
+        this.user = tweet.getUser();
+    }
 
     /**
      * 
@@ -41,6 +48,8 @@ public class Tweet {
         this.likes = likes;
         this.user = user;
     }
+
+
 
     public Integer getId() {
         return id;
