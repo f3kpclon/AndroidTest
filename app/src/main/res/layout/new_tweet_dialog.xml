@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/constraintLayoutPost"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+
+    <EditText
+        android:id="@+id/editTextTextMultiLine"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginEnd="8dp"
+        android:background="@color/design_default_color_background"
+        android:ems="10"
+        android:gravity="start|top"
+        android:hint="@string/hint_text_mensaje_nuevo"
+        android:inputType="textMultiLine"
+        android:textColor="@color/black"
+        android:textSize="18sp"
+        app:layout_constraintBottom_toBottomOf="@+id/imageViewAvtar"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/imageViewAvtar"
+        app:layout_constraintTop_toTopOf="@+id/imageViewAvtar" />
+
+    <ImageView
+        android:id="@+id/imageViewAvtar"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="31dp"
+        app:layout_constraintEnd_toEndOf="@+id/imageViewClose"
+        app:layout_constraintStart_toStartOf="@+id/imageViewClose"
+        app:layout_constraintTop_toBottomOf="@+id/imageViewClose"
+        app:srcCompat="@drawable/ic_account_circle_black_24dp" />
+
+    <Button
+        android:id="@+id/buttonPOST"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="24dp"
+        android:text="TWITTEAR"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="@+id/imageViewClose"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/imageViewClose" />
+
+    <ImageView
+        android:id="@+id/imageViewClose"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="24dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/ic_baseline_close_24" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

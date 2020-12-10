@@ -1,0 +1,24 @@
+<resources>
+    <string name="app_name">miTwitterTest</string>
+    <string name="hint_password">Password</string>
+    <string name="text_createAccount">Si aún no tiene cuenta, registra aquí</string>
+    <string name="text_returnLogin">Regresa a Login</string>
+    <string name="hint_username">Nombre Usuario</string>
+    <string name="title_activity_dashboard">MainActivity</string>
+    <string name="title_home">Home</string>
+    <string name="title_dashboard">Dashboard</string>
+    <string name="title_notifications">Notifications</string>
+    <string name="title_activity_t_e_s_t_main">TESTMainActivity</string>
+    <!-- Strings used for fragments for navigation -->
+    <string name="first_fragment_label">First Fragment</string>
+    <string name="second_fragment_label">Second Fragment</string>
+    <string name="next">Next</string>
+    <string name="previous">Previous</string>
+
+    <string name="hello_first_fragment">Hello first fragment</string>
+    <string name="hello_second_fragment">Hello second fragment. Arg: %1$s</string>
+    <string name="toolbar_HOME">Inicio</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="hint_text_mensaje_nuevo">¿En que estas pensando?</string>
+</resources>
