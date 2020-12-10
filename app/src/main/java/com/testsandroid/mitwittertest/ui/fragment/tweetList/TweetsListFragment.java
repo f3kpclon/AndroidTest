@@ -66,8 +66,8 @@ public class TweetsListFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_tweets_list_list, container, false);
-        progressBar = view.findViewById(R.id.progressBarTest);
-        progressBar.setVisibility(View.VISIBLE);
+        //progressBar = view.findViewById(R.id.progressBarTest);
+        //progressBar.setVisibility(View.VISIBLE);
         // Set the adapter
         if (view instanceof RecyclerView) {
             context = view.getContext();
