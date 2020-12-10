@@ -15,14 +15,12 @@ public class TweetViewModel extends AndroidViewModel {
     private TweetRepository tweetRepository;
     private LiveData<List<Tweet>> listLiveData;
 
-
     public TweetViewModel(@NonNull Application application) {
         super(application);
-
         tweetRepository = new TweetRepository();
         listLiveData = tweetRepository.getAllTeets();
-
     }
+
 
     public LiveData<List<Tweet>> getListLiveData() {
         return listLiveData;

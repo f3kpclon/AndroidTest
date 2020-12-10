@@ -66,43 +66,31 @@ public class TweetsListFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_tweets_list_list, container, false);
-        progressBar = view.findViewById(R.id.progressBarTest);
-        progressBar.setVisibility(View.VISIBLE);
+
+        progressBar = view.findViewById(R.id.loading);
+        recyclerView = view.findViewById(R.id.list);
         // Set the adapter
-        if (view instanceof RecyclerView) {
-            context = view.getContext();
-            recyclerView = (RecyclerView) view;
-            if (mColumnCount <= 1) {
-                recyclerView.setLayoutManager(new LinearLayoutManager(context));
-            } else {
-                recyclerView.setLayoutManager(new GridLayoutManager(context, mColumnCount));
-            }
-            adapter = new MyTweetsRecyclerViewAdapter(
-                    getActivity(),
-                    tweetList
-            );
-            recyclerView.setAdapter(adapter);
+        recyclerView.setLayoutManager(new LinearLayoutManager(context));
+        recyclerView.setLayoutManager(new GridLayoutManager(context, mColumnCount));
+        adapter = new MyTweetsRecyclerViewAdapter(getActivity(), tweetList);
+        recyclerView.setAdapter(adapter);
 
 
-            loadDataAdapter();
-
-
-
-
-
-
-
-        }
+        loadDataAdapter();
         return view;
     }
 
 
     private void loadDataAdapter() {
-
+        progressBar.setVisibility(View.VISIBLE);
+        recyclerView.setVisibility(View.GONE);
         tweetViewModel.getListLiveData().observe(getActivity(), new Observer<List<Tweet>>() {
 
             @Override
             public void onChanged(@Nullable List<Tweet> tweets) {
+
+                progressBar.setVisibility(View.GONE);
+                recyclerView.setVisibility(View.VISIBLE);
                 tweetList = tweets;
                 adapter.setData(tweetList);
 
@@ -111,8 +99,6 @@ public class TweetsListFragment extends Fragment {
 
 
         });
-
-
 
 
     }

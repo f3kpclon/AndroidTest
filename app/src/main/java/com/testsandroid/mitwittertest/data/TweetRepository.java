@@ -30,10 +30,10 @@ public class TweetRepository {
     }
     public LiveData<List<Tweet>> getAllTeets(){
         final MutableLiveData<List<Tweet>> data = new MutableLiveData<>();
-
         Call<List<Tweet>> call = authTwitterService.getAllTweets();
 
         call.enqueue(new Callback<List<Tweet>>() {
+
             @Override
             public void onResponse(Call<List<Tweet>> call, Response<List<Tweet>> response) {
                 if(response.isSuccessful()){
