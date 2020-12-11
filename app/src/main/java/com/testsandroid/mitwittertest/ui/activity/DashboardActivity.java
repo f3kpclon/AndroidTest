@@ -1,7 +1,6 @@
 package com.testsandroid.mitwittertest.ui.activity;
 
 import android.os.Bundle;
-import android.view.View;
 import android.widget.ImageView;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -12,11 +11,9 @@ import androidx.navigation.ui.NavigationUI;
 
 import com.bumptech.glide.Glide;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
-import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.testsandroid.mitwittertest.R;
 import com.testsandroid.mitwittertest.commons.Constants;
 import com.testsandroid.mitwittertest.commons.SharedPreferencesManager;
-import com.testsandroid.mitwittertest.ui.fragment.TweetDialog.TweetDialogFragment;
 
 public class DashboardActivity extends AppCompatActivity {
     ImageView ivAvatar;
@@ -26,7 +23,6 @@ public class DashboardActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_dashboard);
         BottomNavigationView navView = findViewById(R.id.nav_view);
-        FloatingActionButton floatingActionButton = findViewById(R.id.fab);
         ivAvatar = findViewById(R.id.imageViewUser);
 
         // Passing each menu ID as a set of Ids because each
@@ -39,14 +35,7 @@ public class DashboardActivity extends AppCompatActivity {
         NavigationUI.setupActionBarWithNavController(this, navController, appBarConfiguration);
         NavigationUI.setupWithNavController(navView, navController);
 
-        floatingActionButton.setOnClickListener(new View.OnClickListener() {
 
-            @Override
-            public void onClick(View v) {
-                TweetDialogFragment tweetDialogFragment = new TweetDialogFragment();
-                tweetDialogFragment.show(getSupportFragmentManager(),"TweetDialogFragment");
-            }
-        });
 
         String photoUSer = SharedPreferencesManager.getSomeStringValue(Constants.PREF_PHOTOURL);
         if(!photoUSer.isEmpty()){

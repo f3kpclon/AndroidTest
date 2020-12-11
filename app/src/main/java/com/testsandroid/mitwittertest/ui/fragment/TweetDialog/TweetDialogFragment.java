@@ -21,16 +21,21 @@ import com.testsandroid.mitwittertest.R;
 import com.testsandroid.mitwittertest.commons.Constants;
 import com.testsandroid.mitwittertest.commons.SharedPreferencesManager;
 import com.testsandroid.mitwittertest.data.TweetViewModel;
-import com.testsandroid.mitwittertest.model.response.Tweet;
-
-import java.util.List;
+import com.testsandroid.mitwittertest.ui.interfaces.MyListener;
 
 public class TweetDialogFragment extends DialogFragment implements View.OnClickListener {
 
     ImageView ivCLose, ivAvatar;
     Button button;
     EditText edMessage;
-    List<Tweet> tweetList;
+    MyListener myListener;
+
+
+    public void setMyListener(MyListener myListener) {
+        this.myListener = myListener;
+    }
+
+
 
     //Dialog newTweet;
 
@@ -88,6 +93,7 @@ public class TweetDialogFragment extends DialogFragment implements View.OnClickL
                 } else {
                     TweetViewModel tweetViewModel = new ViewModelProvider(this).get(TweetViewModel.class);
                     tweetViewModel.postTweets(mensaje);
+                    myListener.saveTweetListener();
                     getDialog().dismiss();
                 }
 

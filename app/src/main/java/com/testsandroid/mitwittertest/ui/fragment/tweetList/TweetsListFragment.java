@@ -9,21 +9,25 @@ import android.widget.ProgressBar;
 
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.testsandroid.mitwittertest.R;
 import com.testsandroid.mitwittertest.data.TweetViewModel;
 import com.testsandroid.mitwittertest.model.response.Tweet;
+import com.testsandroid.mitwittertest.ui.fragment.TweetDialog.TweetDialogFragment;
+import com.testsandroid.mitwittertest.ui.interfaces.MyListener;
 
 import java.util.List;
 
 /**
  * A fragment representing a list of Items.
  */
-public class TweetsListFragment extends Fragment {
+public class TweetsListFragment extends Fragment implements MyListener {
 
     // TODO: Customize parameter argument names
     private static final String ARG_COLUMN_COUNT = "column-count";
@@ -35,6 +39,7 @@ public class TweetsListFragment extends Fragment {
     List<Tweet> tweetList;
     TweetViewModel tweetViewModel;
     ProgressBar progressBar;
+
 
 
     public TweetsListFragment() {
@@ -56,6 +61,8 @@ public class TweetsListFragment extends Fragment {
         tweetViewModel = new ViewModelProvider(this).get(TweetViewModel.class);
 
 
+
+
         if (getArguments() != null) {
             mColumnCount = getArguments().getInt(ARG_COLUMN_COUNT);
         }
@@ -67,17 +74,31 @@ public class TweetsListFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_tweets_list_list, container, false);
 
 
-
+        FloatingActionButton floatButton = view.findViewById(R.id.fab2);
         progressBar = view.findViewById(R.id.loading);
         recyclerView = view.findViewById(R.id.list);
+
         // Set the adapter
         recyclerView.setLayoutManager(new LinearLayoutManager(context));
         recyclerView.setLayoutManager(new GridLayoutManager(context, mColumnCount));
         adapter = new MyTweetsRecyclerViewAdapter(getActivity(), tweetList);
         recyclerView.setAdapter(adapter);
-
-
         loadDataAdapter();
+
+        floatButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                TweetDialogFragment tweetDialogFragment = new TweetDialogFragment();
+                FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
+                tweetDialogFragment.setMyListener(TweetsListFragment.this::saveTweetListener);
+                tweetDialogFragment.show(fragmentManager,"TweetDialogFragment");
+
+
+
+                }
+        });
+
+
         return view;
     }
 
@@ -95,6 +116,11 @@ public class TweetsListFragment extends Fragment {
 
         });
 
+    }
 
+
+    @Override
+    public void saveTweetListener() {
+        loadDataAdapter();
     }
 }

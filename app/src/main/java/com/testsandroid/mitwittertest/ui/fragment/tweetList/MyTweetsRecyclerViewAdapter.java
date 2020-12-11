@@ -80,6 +80,7 @@ public class MyTweetsRecyclerViewAdapter extends RecyclerView.Adapter<MyTweetsRe
 
     }
     public void setData (List<Tweet> tweetList){
+
         this.mValues = tweetList;
         notifyDataSetChanged();
     }

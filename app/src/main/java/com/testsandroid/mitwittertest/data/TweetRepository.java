@@ -10,7 +10,6 @@ import com.testsandroid.mitwittertest.model.response.Tweet;
 import com.testsandroid.mitwittertest.retrofit.AuthTwitterClient;
 import com.testsandroid.mitwittertest.retrofit.AuthTwitterService;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import retrofit2.Call;
@@ -67,17 +66,9 @@ public class TweetRepository {
             @Override
             public void onResponse(Call<Tweet> call, Response<Tweet> response) {
                 if (response.isSuccessful()) {
-                    Toast.makeText(MyAPP.getContext(), "Post Logrado", Toast.LENGTH_SHORT).show();
-                    //clonar lista
-                    List<Tweet> clonedList = new ArrayList<>();
-                    clonedList.add(response.body());
 
-                    for (int i = 0; i < allTweetsData.getValue().size(); i++) {
-                        clonedList.add(new Tweet(allTweetsData.getValue().get(i)));
-                    }
-                    //primer lugar al ultimo tweet que generamos y nos llega del server
 
-                    allTweetsData.setValue(clonedList);
+                    Toast.makeText(MyAPP.getContext(), "Se logro el POST", Toast.LENGTH_SHORT).show();
 
                 } else {
                     Toast.makeText(MyAPP.getContext(), "Algo Ocurrio, intente nuevamente", Toast.LENGTH_SHORT).show();
@@ -88,6 +79,7 @@ public class TweetRepository {
             public void onFailure(Call<Tweet> call, Throwable t) {
                 Toast.makeText(MyAPP.getContext(), "Error de conexión!!", Toast.LENGTH_SHORT).show();
             }
+
         });
     }
 
