@@ -45,34 +45,13 @@ public class TweetsListFragment extends Fragment implements MyListener {
     public TweetsListFragment() {
     }
 
-    // TODO: Customize parameter initialization
-    @SuppressWarnings("unused")
-    public static TweetsListFragment newInstance(int columnCount) {
-        TweetsListFragment fragment = new TweetsListFragment();
-        Bundle args = new Bundle();
-        args.putInt(ARG_COLUMN_COUNT, columnCount);
-        fragment.setArguments(args);
-        return fragment;
-    }
-
-    @Override
-    public void onCreate(@Nullable Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        tweetViewModel = new ViewModelProvider(this).get(TweetViewModel.class);
-
-
-
-
-        if (getArguments() != null) {
-            mColumnCount = getArguments().getInt(ARG_COLUMN_COUNT);
-        }
-    }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_tweets_list_list, container, false);
 
+        tweetViewModel = new ViewModelProvider(this).get(TweetViewModel.class);
 
         FloatingActionButton floatButton = view.findViewById(R.id.fab2);
         progressBar = view.findViewById(R.id.loading);
@@ -90,7 +69,7 @@ public class TweetsListFragment extends Fragment implements MyListener {
             public void onClick(View v) {
                 TweetDialogFragment tweetDialogFragment = new TweetDialogFragment();
                 FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
-                tweetDialogFragment.setMyListener(TweetsListFragment.this::saveTweetListener);
+                tweetDialogFragment.setMyListener(TweetsListFragment.this);
                 tweetDialogFragment.show(fragmentManager,"TweetDialogFragment");
 
 
@@ -107,7 +86,6 @@ public class TweetsListFragment extends Fragment implements MyListener {
         progressBar.setVisibility(View.VISIBLE);
         recyclerView.setVisibility(View.GONE);
         tweetViewModel.getListLiveData().observe(getActivity(), tweets -> {
-
             progressBar.setVisibility(View.GONE);
             recyclerView.setVisibility(View.VISIBLE);
             tweetList = tweets;
